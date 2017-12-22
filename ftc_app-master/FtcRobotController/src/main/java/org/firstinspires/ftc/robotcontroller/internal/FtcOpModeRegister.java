@@ -68,9 +68,6 @@ public class FtcOpModeRegister implements OpModeRegister {
      * @see com.qualcomm.robotcore.eventloop.opmode.Autonomous
      */
     public void register(OpModeManager manager) {
-
-
-
         manager.register("Maveric_DriverControl", MavericTeleOpMode_Iterative.class);
         manager.register("MavericAutonomusBlue", MavericAutonomusOpModeBlueJewelFRONT_Linear.class);
         manager.register("MavericAutonomusStraight", Maveric_AutoStraight_Linear.class);
@@ -78,13 +75,5 @@ public class FtcOpModeRegister implements OpModeRegister {
         manager.register("MavericAutonomusBlueFRONT", MavericAutonomusOpModeBlueJewelFRONT_Linear.class);
         manager.register("MavericAutonomusRedBACK", MavericAutonomusOpModeRedJewelBACK_Linear.class);
         manager.register("MavericAutonomusRedFRONT", MavericAutonomusOpModeRedJewelFRONT_Linear.class);
-
-
-
-
-
-
-
-
     }
 }
