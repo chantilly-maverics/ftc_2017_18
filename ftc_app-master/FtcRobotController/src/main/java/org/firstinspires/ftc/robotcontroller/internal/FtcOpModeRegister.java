@@ -75,5 +75,6 @@ public class FtcOpModeRegister implements OpModeRegister {
         manager.register("MavericAutonomusBlueFRONT", MavericAutonomusOpModeBlueJewelFRONT_Linear.class);
         manager.register("MavericAutonomusRedBACK", MavericAutonomusOpModeRedJewelBACK_Linear.class);
         manager.register("MavericAutonomusRedFRONT", MavericAutonomusOpModeRedJewelFRONT_Linear.class);
+//        change made by Akhil
     }
 }
