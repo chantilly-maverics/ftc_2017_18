@@ -3,10 +3,24 @@
 <!-- Note: the actual manifest file used in your APK merges this file with contributions
      from the modules on which your app depends (such as FtcRobotController, etc).
      So it won't ultimately be as empty as it might here appear to be :-) -->
+<!--
+set ADB_SERVER=0
+adb kill-server
+adb start-server
+adb devices
+adb tcpip 5555
+adb connect 192.168.1.251
+REM adb connect 192.168.1.250
+adb devices
+cd "C:\del_me\ftc_2017_18\ftc_app-master\TeamCode\build\outputs\apk\debug"
+adb uninstall com.qualcomm.ftcrobotcontroller
+adb install -r TeamCode-debug.apk
+-->
 
 <!-- The package name here determines the package for your R class and your BuildConfig class -->
 <manifest
     package="org.firstinspires.ftc.teamcode"
+    android:testOnly="false"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <application/>
 </manifest>
