@@ -34,7 +34,6 @@ package org.firstinspires.ftc.robotcontroller.internal;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.ConceptNullOp;
 import org.firstinspires.ftc.robotcontroller.external.samples.MavericAutonomusOpModeBlueJewelBACK_Linear;
 import org.firstinspires.ftc.robotcontroller.external.samples.MavericAutonomusOpModeBlueJewelFRONT_Linear;
 import org.firstinspires.ftc.robotcontroller.external.samples.MavericAutonomusOpModeRedJewelBACK_Linear;
