@@ -613,7 +613,7 @@ public class FtcRobotControllerActivity extends Activity
         }
       });
     }
-  }
+  } 
 
   protected class SharedPreferencesListener implements SharedPreferences.OnSharedPreferenceChangeListener {
     @Override public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
