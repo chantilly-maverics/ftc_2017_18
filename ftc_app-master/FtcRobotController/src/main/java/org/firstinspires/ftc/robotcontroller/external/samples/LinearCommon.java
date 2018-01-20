@@ -15,17 +15,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class LinearCommon extends LinearOpMode {
     // Declare OpMode members.
     HardwarePushbot robot = new HardwarePushbot();
-    private ElapsedTime limiter= new ElapsedTime();
 
     //public final static double COLORWRIST_MIN_RANGE = 0.0;
     //public final static double COLORWRIST_MAX_RANGE = 0.5;
 
-    private Servo ColorArmServo = null;
-    private Servo ColorWristServo = null;
-    private DcMotor leftDc = null;
-    private DcMotor rightDC = null;
-    private ColorSensor color;
-    private final double LIMIT = 6;
+    protected Servo ColorArmServo = null;
+    protected Servo ColorWristServo = null;
+    protected DcMotor leftDc = null;
+    protected DcMotor rightDC = null;
+    protected ColorSensor color;
     @Override
     public void runOpMode() {
         float hsvValues[] = {0F, 0F, 0F};
@@ -92,11 +90,11 @@ public class LinearCommon extends LinearOpMode {
         }
     }
 
-    private void swipeTowardsBlue() {
+    protected void swipeTowardsBlue() {
 
     }
 
-    private void swipeTowardsRed() {
+    protected void swipeTowardsRed() {
 
     }
 
@@ -118,11 +116,11 @@ public class LinearCommon extends LinearOpMode {
         sleep(4000);
     }
 
-    private boolean isBlueSensed() {
+    protected boolean isBlueSensed() {
         return color.blue() > color.red() && color.blue() > color.green();
     }
 
-    private boolean isRedSensed() {
+    protected boolean isRedSensed() {
         return color.red() > color.blue() && color.red() > color.green();
     }
 }
