@@ -62,8 +62,8 @@ public class MavericTeleOpMode_Iterative extends OpMode {
     private DcMotor left = null;
     private DcMotor right = null;
     private DcMotor middle = null;
-    private DcMotor arm = null;
-    private CRServo wrist;
+    //private DcMotor arm = null;
+    private CRServo LinearArm;
     private Servo claw;
     private Servo claw2;
 
@@ -103,8 +103,8 @@ public class MavericTeleOpMode_Iterative extends OpMode {
         left = hardwareMap.get(DcMotor.class, "left");
         right = hardwareMap.get(DcMotor.class, "right");
         middle = hardwareMap.get(DcMotor.class, "middle");
-        arm = hardwareMap.get(DcMotor.class, "arm");
-        wrist = hardwareMap.get(CRServo.class, "wrist");
+        //arm = hardwareMap.get(DcMotor.class, "arm");
+        LinearArm = hardwareMap.get(CRServo.class, "LinearArm");
         claw = hardwareMap.get(Servo.class, "claw");
         claw2 = hardwareMap.get(Servo.class, "claw2");
 
@@ -115,7 +115,7 @@ public class MavericTeleOpMode_Iterative extends OpMode {
 
         left.setDirection(DcMotor.Direction.REVERSE);
         right.setDirection(DcMotor.Direction.FORWARD);
-        wrist.setDirection(DcMotorSimple.Direction.REVERSE);
+        LinearArm.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
 
@@ -147,7 +147,7 @@ public class MavericTeleOpMode_Iterative extends OpMode {
         double leftPower;
         double rightPower;
         double armPower;
-        double wristPower;
+        double LinearArmPower;
 
 
         // Choose to drive using either Tank Mode, or POV Mode
@@ -166,9 +166,9 @@ public class MavericTeleOpMode_Iterative extends OpMode {
         leftPower = Range.clip(drive1 + turn1, -0.5, 0.5);
         rightPower = Range.clip(drive - turn, -0.5, 0.5);
         armPower = Range.clip(lift, -0.2, 0.6);
-        wristPower = Range.clip(lift2, -0.2, 1);
+        LinearArmPower = Range.clip(lift2, -0.5, 5);
         //wristPosition = Range.clip(wristPosition,WRIST_MIN_RANGE,WRIST_MAX_RANGE);
-        arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
 
@@ -215,13 +215,6 @@ public class MavericTeleOpMode_Iterative extends OpMode {
         }
 
 
-
-
-
-
-
-
-
                 //x and y buttons controlling middle motor
 
         // Tank Mode uses one stick to control each wheel.
@@ -232,14 +225,8 @@ public class MavericTeleOpMode_Iterative extends OpMode {
         // Send calculated power to wheels
         left.setPower(leftPower);
         right.setPower(rightPower);
-        arm.setPower(armPower);
-        wrist.setPower(wristPower);
-
-
-
-
-
-
+        //arm.setPower(armPower);
+        LinearArm.setPower(LinearArmPower);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
