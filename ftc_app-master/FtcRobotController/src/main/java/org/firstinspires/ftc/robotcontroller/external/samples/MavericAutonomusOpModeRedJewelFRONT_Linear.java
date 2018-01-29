@@ -114,7 +114,7 @@ public class  MavericAutonomusOpModeRedJewelFRONT_Linear extends LinearOpMode {
             sleep(2000);
             ColorWrist.setPosition(0.35);
             sleep(2000);
-            ColorArm.setPosition(0.7);
+            ColorArm.setPosition(0.85);
             sleep(4000);
 
 

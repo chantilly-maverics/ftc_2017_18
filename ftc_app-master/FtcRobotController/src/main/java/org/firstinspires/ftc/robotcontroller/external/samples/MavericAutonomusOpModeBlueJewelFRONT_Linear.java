@@ -29,17 +29,18 @@
 
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
-        import android.app.Activity;
-        import android.graphics.Color;
-        import android.view.View;
+import android.app.Activity;
+import android.graphics.Color;
+import android.view.View;
 
-        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-        import com.qualcomm.robotcore.hardware.ColorSensor;
-        import com.qualcomm.robotcore.hardware.DcMotor;
-        import com.qualcomm.robotcore.hardware.Servo;
-        import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 /**
@@ -72,6 +73,9 @@ public class MavericAutonomusOpModeBlueJewelFRONT_Linear extends LinearOpMode {
     public DcMotor left = null;
     public DcMotor right = null;
     public ColorSensor color;
+    public Servo claw;
+    public Servo claw2;
+    public DcMotor linearArm = null;
     public final double LIMIT = 6;
 
 
@@ -92,13 +96,29 @@ public class MavericAutonomusOpModeBlueJewelFRONT_Linear extends LinearOpMode {
         ColorWrist = hardwareMap.servo.get("ColorWrist");
         left= hardwareMap.get(DcMotor.class, "left");
         right = hardwareMap.get(DcMotor.class, "right");
+        claw = hardwareMap.get(Servo.class,"claw");
+        claw2 = hardwareMap.get(Servo.class, "claw2");
+        linearArm = hardwareMap.get(DcMotor.class, "LinearArm");
+
+
+        right.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        left.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        linearArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        right.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        linearArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
 
         //telemetry.addData("Initialization", "Complete");
-        left.setDirection(DcMotor.Direction.FORWARD);
+        left.setDirection(DcMotor.Direction.REVERSE);
         right.setDirection(DcMotor.Direction.REVERSE);
-
+       
         color.enableLed(bLedOn);
 
 
@@ -112,90 +132,102 @@ public class MavericAutonomusOpModeBlueJewelFRONT_Linear extends LinearOpMode {
 
             ColorArm.setPosition(0.1);
             sleep(2000);
-            ColorWrist.setPosition(0.35);
+            ColorWrist.setPosition(0.4);
             sleep(2000);
-            ColorArm.setPosition(0.7);
+            ColorArm.setPosition(0.9);
             sleep(4000);
 
 
             if (color.blue() > color.red() && color.blue() > color.green()) {
-                ColorWrist.setPosition(0.5);
+                ColorWrist.setPosition(0.2);
                 sleep(2000);
                 ColorArm.setPosition(0.1);
                 sleep(1500);
                 ColorWrist.setPosition(0.85);
                 sleep(500);
                 ColorArm.setPosition(0);
-                sleep(3000);
-                left.setTargetPosition(4800);
+                sleep(3000000);
+                /*claw.setPosition(0.7);
+                claw2.setPosition(0.3);
+                sleep(1000);
+                linearArm.setTargetPosition(600);
+                sleep(1000);
+                left.setTargetPosition(4800);// moving robot forward into parking zone
                 right.setTargetPosition(4800);
-                left.setPower(0.5);
-                right.setPower(0.85);
-                sleep(30000000);
+                left.setPower(1);
+                right.setPower(1);
+                sleep(30000000); */
 
 
 
             } else if (color.red() > color.blue() && color.red() > color.green()) {
-                ColorWrist.setPosition(0.10);// Blue servo is activated
+                ColorWrist.setPosition(0.45);// Blue servo is activated
                 sleep(1000);
                 ColorArm.setPosition(0.1);
                 sleep(1500);
                 ColorWrist.setPosition(0.85);
                 sleep(500);
                 ColorArm.setPosition(0);
-                sleep(3000);
-                left.setTargetPosition(4800);
-                right.setTargetPosition(4800);
-                left.setPower(0.5);
-                right.setPower(0.85);
-                sleep(30000000);
-
-            } else {
-                ColorWrist.setPosition(0.85);
-                sleep(5000);
-                ColorArm.setPosition(0);
+                sleep(3000000);
+                /*claw.setPosition(0.7);
+                claw2.setPosition(0.3);
+                sleep(1000);
+                linearArm.setTargetPosition(600);
                 sleep(1000);
                 left.setTargetPosition(4800);
                 right.setTargetPosition(4800);
-                left.setPower(0.5);
-                right.setPower(0.85);
-                sleep(30000000);
+                left.setPower(1);
+                right.setPower(1);
+                sleep(30000000); */
+
+            } else {
+                ColorArm.setPosition(0.1);
+                sleep(1000);
+                ColorWrist.setPosition(0.85);
+                sleep(1000);
+                ColorArm.setPosition(0);
+                /*claw.setPosition(0.7);
+                claw2.setPosition(0.3);
+                sleep(1000);
+                linearArm.setTargetPosition(600);
+                sleep(1000);
+                left.setTargetPosition(4800);
+                right.setTargetPosition(4800);
+                left.setPower(0.65);
+                right.setPower(0.65);
+                sleep(30000000); */
 
 
             }
 
 
+            }
+
+            linearArm.setTargetPosition(0);
+            right.setPower(0);
+            left.setPower(0);
+
+            //right.setPower(0);
+            //left.setPower(0);
+
+            relativeLayout.post(new Runnable() {
+                public void run() {
+                    relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
+                }
+            });
+
+            telemetry.update();
+
+            relativeLayout.post(new Runnable() {
+                public void run() {
+                    relativeLayout.setBackgroundColor(Color.WHITE);
+                }
+            });
+
+
+
+            }
         }
 
-
-        right.setPower(0);
-        left.setPower(0);
-
-        //right.setPower(0);
-        //left.setPower(0);
-
-        relativeLayout.post(new Runnable() {
-            public void run() {
-                relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
-            }
-        });
-
-        telemetry.update();
-
-        relativeLayout.post(new Runnable() {
-            public void run() {
-                relativeLayout.setBackgroundColor(Color.WHITE);
-            }
-        });
-
-
-        // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-
-
-
-        }
-    }
-}
 
 
